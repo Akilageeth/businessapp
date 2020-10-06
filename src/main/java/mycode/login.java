@@ -40,13 +40,13 @@ public class login extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txt_name = new javax.swing.JTextField();
-        txt_pass = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        txt_pass = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(0, 0, 255));
+        jPanel1.setBackground(new java.awt.Color(0, 102, 102));
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
@@ -84,10 +84,6 @@ public class login extends javax.swing.JFrame {
         txt_name.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         txt_name.setForeground(new java.awt.Color(0, 0, 0));
 
-        txt_pass.setBackground(new java.awt.Color(204, 204, 204));
-        txt_pass.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        txt_pass.setForeground(new java.awt.Color(0, 0, 0));
-
         jButton1.setBackground(new java.awt.Color(0, 255, 102));
         jButton1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
@@ -102,6 +98,13 @@ public class login extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Login");
+
+        txt_pass.setBackground(new java.awt.Color(204, 204, 204));
+        txt_pass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_passActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -123,8 +126,8 @@ public class login extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(79, 79, 79))))
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(72, 72, 72))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,8 +174,8 @@ public class login extends javax.swing.JFrame {
         String pass  = txt_pass.getText();
         
         try{       
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/gym","root","");
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM `login` WHERE `username` =? AND `userpassword` =?");   
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/business","root","");
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM `login` WHERE `username` =? AND `pass` =?");   
             ps.setString(1,uname);
             ps.setString(2,pass);
             ResultSet rs = ps.executeQuery();
@@ -193,6 +196,10 @@ public class login extends javax.swing.JFrame {
                                        
                                        
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void txt_passActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_passActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_passActionPerformed
 
     /**
      * @param args the command line arguments
@@ -238,6 +245,6 @@ public class login extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField txt_name;
-    private javax.swing.JTextField txt_pass;
+    private javax.swing.JPasswordField txt_pass;
     // End of variables declaration//GEN-END:variables
 }
