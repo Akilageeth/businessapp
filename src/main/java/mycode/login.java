@@ -40,9 +40,9 @@ public class login extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txt_name = new javax.swing.JTextField();
-        txt_pass = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        txt_pass = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -84,10 +84,6 @@ public class login extends javax.swing.JFrame {
         txt_name.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         txt_name.setForeground(new java.awt.Color(0, 0, 0));
 
-        txt_pass.setBackground(new java.awt.Color(204, 204, 204));
-        txt_pass.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        txt_pass.setForeground(new java.awt.Color(0, 0, 0));
-
         jButton1.setBackground(new java.awt.Color(0, 255, 102));
         jButton1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
@@ -101,7 +97,14 @@ public class login extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(255, 51, 0));
         jButton2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Login");
+        jButton2.setText("Cancel");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        txt_pass.setBackground(new java.awt.Color(204, 204, 204));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -118,13 +121,13 @@ public class login extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(29, 29, 29)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txt_name)
-                            .addComponent(txt_pass, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE))
+                            .addComponent(txt_name, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+                            .addComponent(txt_pass))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(79, 79, 79))))
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(69, 69, 69))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -167,12 +170,13 @@ public class login extends javax.swing.JFrame {
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
         
+        
          String uname = txt_name.getText();
         String pass  = txt_pass.getText();
         
         try{       
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/gym","root","");
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM `login` WHERE `username` =? AND `userpassword` =?");   
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/sarasavi","root","");
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM `login` WHERE `username` =? AND `password` =?");   
             ps.setString(1,uname);
             ps.setString(2,pass);
             ResultSet rs = ps.executeQuery();
@@ -193,6 +197,10 @@ public class login extends javax.swing.JFrame {
                                        
                                        
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -238,6 +246,6 @@ public class login extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField txt_name;
-    private javax.swing.JTextField txt_pass;
+    private javax.swing.JPasswordField txt_pass;
     // End of variables declaration//GEN-END:variables
 }
